@@ -2,6 +2,7 @@
 # coding=UTF-8
 
 import csv, sys
+import random
 from random import randint
 
 num_linhas = 0
@@ -10,12 +11,13 @@ ab = 0
 fe = 0
 
 def carregarQuestoes(arquivo):
+	global num_linhas
 	with open(arquivo) as csvfile:
 		arquivo = csv.reader(csvfile, delimiter=';')
 		for row in arquivo:
 			junto.append(row)
-			num_linhas+=1
-			
+			num_linhas += 1
+
 def escolherQuestoes(fechadas, abertas):
 	qst = []
 	total = fechadas+abertas
@@ -26,6 +28,7 @@ def escolherQuestoes(fechadas, abertas):
 		if qst.count(temp) == 0:
 #			print('Nao e duplicada')
 			if(junto[temp-1][0] == str(0) and fe > 0):
+				fim = int(len(qst)-1)
 				qst.append(temp)
 				fe -= 1
 			elif(junto[temp-1][0] == str(1) and ab > 0):
@@ -34,11 +37,13 @@ def escolherQuestoes(fechadas, abertas):
 	return qst
 
 def escreverQuestoes(questoes):
+	rand_arr = [2,3,4,5,6]
 	for x in questoes:
+		random.shuffle(rand_arr) # randomiza a cada laço os indices das respostas
 		if(junto[x-1][0] == str(1)):
 			print('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
 		else:
-			print('Q%s) %s\na)%s\nb)%s\nc)%s\nd)%s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][2],junto[x-1][3],junto[x-1][4],junto[x-1][5]))
+			print('Q%s) %s\na)%s\nb)%s\nc)%s\nd)%s\ne)%s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
 
 def main(argv):
 	if(len(argv) != 0):
