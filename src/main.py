@@ -36,21 +36,24 @@ def escolherQuestoes(fechadas, abertas):
 				ab -= 1
 	return qst
 
-def escreverQuestoes(questoes):
+def escreverQuestoes(questoes,arqNome):
+	arquivo=open(arqNome+".txt", "a")
 	rand_arr = [2,3,4,5,6]
+	arquivo.write('================== PROVA ==================\n')
 	for x in questoes:
 		random.shuffle(rand_arr) # randomiza a cada laço os indices das respostas
 		if(junto[x-1][0] == str(1)):
-			print('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
+#			print('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
+			arquivo.write('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
 		else:
-			print('Q%s) %s\na)%s\nb)%s\nc)%s\nd)%s\ne)%s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
-
+			arquivo.write('Q%s) %s\na)%s\nb)%s\nc)%s\nd)%s\ne)%s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
+	arquivo.close()
 def main(argv):
 	if(len(argv) != 0):
 		carregarQuestoes(str(argv[0]))
-		escreverQuestoes(escolherQuestoes(int(argv[1]), int(argv[2])))
+		escreverQuestoes(escolherQuestoes(int(argv[1]), int(argv[2])), argv[3])
 	else:
-		print ('Use: main.py [banco.csv] [fechadas] [abertas]')
+		print ('Use: main.py <banco.csv> <fechadas> <abertas> <nome arquivo de saida>')
 
 if __name__ == '__main__':
 	main(sys.argv[1:])
