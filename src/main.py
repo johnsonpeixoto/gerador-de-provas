@@ -46,7 +46,7 @@ def escreverQuestoes(questoes,arqNome):
 #			print('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
 			arquivo.write('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
 		else:
-			arquivo.write('Q%s) %s\na)%s\nb)%s\nc)%s\nd)%s\ne)%s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
+			arquivo.write('%s) %s\n\ta) %s\n\tb) %s\n\tc) %s\n\td) %s\n\te) %s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
 	arquivo.close()
 def main(argv):
 	if(len(argv) != 0):
