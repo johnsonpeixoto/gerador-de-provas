@@ -44,7 +44,7 @@ def escreverQuestoes(questoes,arqNome):
 		random.shuffle(rand_arr) # randomiza a cada laço os indices das respostas
 		if(junto[x-1][0] == str(1)):
 #			print('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
-			arquivo.write('Q%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
+			arquivo.write('%s) %s\n' % ((questoes.index(x)+1),junto[x-1][1]))
 		else:
 			arquivo.write('%s) %s\n\ta) %s\n\tb) %s\n\tc) %s\n\td) %s\n\te) %s\n' % ((questoes.index(x)+1),junto[x-1][1],junto[x-1][rand_arr[0]],junto[x-1][rand_arr[1]],junto[x-1][rand_arr[2]],junto[x-1][rand_arr[3]],junto[x-1][rand_arr[4]]))
 	arquivo.close()
